@@ -18,7 +18,7 @@ class Solution {
         return ans.toArray(new int[ans.size()][]);
     }
 
-    private int[] findFarmlandGroup(int[][] land, int row, int col) {
+    int[] findFarmlandGroup(int[][] land, int row, int col) {
         int[] group = {row, col, row, col}; // [top left row, top left col, bottom right row, bottom right col]
 
         // Find the bottom right corner of the farmland group
