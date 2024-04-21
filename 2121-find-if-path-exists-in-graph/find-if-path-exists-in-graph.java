@@ -1,46 +1,36 @@
-import java.util.*;
-
 class Solution {
     public boolean validPath(int n, int[][] edges, int source, int destination) {
-        // Create adjacency list representation of the graph
-        List<List<Integer>> adjList = new ArrayList<>();
-        for (int i = 0; i < n; i++) {
-            adjList.add(new ArrayList<>());
-        }
-        for (int[] edge : edges) {
-            int u = edge[0];
-            int v = edge[1];
-            adjList.get(u).add(v);
-            adjList.get(v).add(u); // Since it's a bidirectional graph
-        }
-        
-        // Initialize visited array
-        boolean[] visited = new boolean[n];
-        
-        // DFS from source vertex
-        return dfs(adjList, visited, source, destination);
+        int[] visited = new int[n];
+
+        for(int i : visited) i = 0;
+
+       return  bfs(n,source, destination, edges,visited);
+
     }
-    
-    private boolean dfs(List<List<Integer>> adjList, boolean[] visited, int current, int destination) {
-        // Mark the current node as visited
-        visited[current] = true;
-        
-        // If current node is the destination, return true
-        if (current == destination) {
-            return true;
-        }
-        
-        // Iterate through all neighbors of current node
-        for (int neighbor : adjList.get(current)) {
-            // If neighbor is not visited, recursively call DFS on it
-            if (!visited[neighbor]) {
-                if (dfs(adjList, visited, neighbor, destination)) {
-                    return true; // If valid path found, return true
+
+
+    boolean bfs(int n, int source, int destination , int[][] edges,int[] visited){
+        Queue<Integer> q = new LinkedList();
+        q.add(source);
+        visited[source] = 1;
+
+        while(!q.isEmpty()){
+            int node = q.peek();
+            if(node == destination)
+                return true;
+            q.remove();
+            for(int[] i : edges){
+                if(node == i[0] || node == i[1]){
+                    int temp = (node == i[0]) ? i[1] : i[0];
+                    if(visited[temp] != 1){
+                            visited[temp] = 1;
+                            q.add(temp);
+                    }
                 }
             }
         }
-        
-        // If no valid path found, return false
+
+
         return false;
     }
 }
