@@ -1,3 +1,4 @@
+//T.c O(nlogn)
 class Solution {
     public int minMovesToSeat(int[] seats, int[] students) {
         Arrays.sort(seats);
