@@ -18,3 +18,20 @@ class Solution {
        return triangle;
     }
 }
+/* class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> ans = new ArrayList<>();
+        for(int i = 1; i <= numRows; i++) {
+            List<Integer>list = new ArrayList<>();
+            list.add(1);
+            int res = 1;
+            for(int j = 1; j < i; j++){
+                res = res * (i-j);
+                res = res/j;
+                list.add(res);
+            }
+            ans.add(list);
+        }
+        return ans;
+    }
+}*/
