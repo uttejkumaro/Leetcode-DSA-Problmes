@@ -1,3 +1,4 @@
+/*
 class Solution {
     public double myPow(double x, int n) {
         // Base case
@@ -27,5 +28,12 @@ class Solution {
             // If n is odd
             return half * half * x;
         }
+    }
+}
+*/
+class Solution {
+    public double myPow(double x, int n) {
+        double ans=Math.pow(x,n);
+        return ans;
     }
 }
