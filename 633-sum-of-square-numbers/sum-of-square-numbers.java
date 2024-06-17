@@ -14,6 +14,7 @@ public boolean judgeSquareSum(int c) {
 }
 }
 */
+//t.c =o(sqrt(c))
 class Solution {
     public boolean judgeSquareSum(int c) {
         long a = (int)Math.sqrt(c); // truncate the decimal part
