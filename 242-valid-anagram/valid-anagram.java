@@ -28,7 +28,7 @@ class Solution {
     return true; 
     }
 } 
-*/
+
 //using char count
 class Solution {
     public boolean isAnagram(String s, String t) {
@@ -52,4 +52,34 @@ class Solution {
     }  
     
 }
+*/
+//using Hashmap
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        int n=s.length();
+        int m=t.length();
+        if (n!=m){
+            return false;
+        }
+        HashMap<Character,Integer>map=new HashMap<>();
+        for(int i=0;i<n;i++){
+            char schar=s.charAt(i);
+            char tchar=t.charAt(i);
+            map.put(schar,map.getOrDefault(schar, 0) + 1);
+            map.put(tchar,map.getOrDefault(tchar, 0) -1);
+
+        }
+            for(int i:map.values()){
+            if (i!=0){
+                 return false;
+                }
+            }
+        return true;
+    
+
+    
+
+   }
+}
+
 
