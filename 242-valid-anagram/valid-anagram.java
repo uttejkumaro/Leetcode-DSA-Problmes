@@ -1,3 +1,8 @@
+/* 2 approaches
+1.hashmap
+2.sorting and compare
+*/
+
 class Solution {
     public boolean isAnagram(String s, String t) {
     int n=s.length();
@@ -12,7 +17,7 @@ class Solution {
     int i=0;
     int j=0;
 
-    while(i<n && j<m){
+    while(i<n && j<m){// O(nlogn),O(n)
         if (a[i]!=b[j]){
         return false;
         }
@@ -20,10 +25,7 @@ class Solution {
            j++;
     }
  
-    return true;  
-
-
-
-
+    return true; 
     }
 }
+
