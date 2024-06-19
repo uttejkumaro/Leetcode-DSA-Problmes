@@ -69,9 +69,15 @@ class Solution {
                 resultList.addAll(buckets[i]);
             }
         }
+        List<Integer> topKList = resultList.subList(0, k);
+        int[] resultArray = new int[k];
+        for (int i = 0; i < k; i++) {
+            resultArray[i] = topKList.get(i);
+        }
 
-        //  Return the result as an array
-        return resultList.subList(0, k).stream().mapToInt(i -> i).toArray();
+        return resultArray;
+
+      
     }
 }
 
