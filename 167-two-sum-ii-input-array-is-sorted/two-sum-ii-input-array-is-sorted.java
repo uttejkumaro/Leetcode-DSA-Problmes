@@ -1,4 +1,4 @@
-class Solution {
+/*class Solution {
     public int[] twoSum(int[] numbers, int target) {
         int n = numbers.length;  // Define the length of the array
         for(int i = 0; i < n; i++) {
@@ -9,5 +9,20 @@ class Solution {
             }
         }
         return new int[]{-1, -1};  // Return an array indicating no solution found
+    }
+}
+*/
+class Solution {
+    public int[] twoSum(int[] numbers, int target) {
+        HashMap<Integer,Integer>map=new HashMap<>();
+        for(int i=0;i<numbers.length;i++){
+            int complement=target-numbers[i];
+            if(map.containsKey(complement)){
+                return new int[]{map.get(complement)+1,i+1};
+
+            }
+            map.put(numbers[i],i);
+        }
+        return null;
     }
 }
