@@ -22,7 +22,7 @@ class Solution {
             default:        
             //if it a number convert into int by parse
             stack.push(Integer.parseInt(token));
-            break;
+            
 
         }
       }
