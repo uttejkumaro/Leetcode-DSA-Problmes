@@ -4,8 +4,9 @@ class Solution {
         int right=nums.length-1;
         int min=Integer.MAX_VALUE;
         while(left<=right){
+
             int mid=left+(right-left)/2;
-            if(nums[left]<=nums[mid]){
+            if(nums[left]<=nums[mid]){//left sorted
                 min=Math.min(min,nums[left]);
                 left=mid+1;
             }
