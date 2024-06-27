@@ -13,7 +13,7 @@
  *     }
  * }
  */
- 
+ /*
 class Solution {
     public int maxDepth(TreeNode root) {
         if(root==null){
@@ -25,6 +25,7 @@ class Solution {
         
     }
 }
+*/
 /*
 class Solution {
     public int maxDepth(TreeNode root) {
@@ -54,6 +55,34 @@ class Solution {
     }
 }
 */
+class Solution {
+    public int maxDepth(TreeNode root) {
+        if(root==null){
+            return 0;
+        }
+        Stack<Pair<TreeNode,Integer>>stack=new Stack<>();
+        stack.push(new Pair<>(root,1));
+        int depth=0;
+        while(!stack.isEmpty()){
+            Pair<TreeNode,Integer> pair=stack.pop();
+            TreeNode node =pair.getKey();
+            int currDep=pair.getValue();
+            depth=Math.max(depth,currDep);
+
+            if (node.left != null) {
+                stack.push(new Pair<>(node.left, currDep + 1));
+            }
+            if (node.right != null) {
+                stack.push(new Pair<>(node.right, currDep + 1));
+            }
+
+        }
+        return depth;
+
+
+    }
+}
+
 
 
 
