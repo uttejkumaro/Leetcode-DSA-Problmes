@@ -13,7 +13,7 @@
  *     }
  * }
  */
- /*
+ 
 class Solution {
     public int maxDepth(TreeNode root) {
         if(root==null){
@@ -25,7 +25,8 @@ class Solution {
         
     }
 }
-*/
+
+//Bfs
 /*
 class Solution {
     public int maxDepth(TreeNode root) {
@@ -55,6 +56,8 @@ class Solution {
     }
 }
 */
+//iterative dfs
+/*
 class Solution {
     public int maxDepth(TreeNode root) {
         if(root==null){
@@ -82,7 +85,7 @@ class Solution {
 
     }
 }
-
+*/
 
 
 
