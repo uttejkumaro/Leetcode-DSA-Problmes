@@ -9,7 +9,7 @@ class Solution {
         }        
         // array of cities and sort them based on their degrees
         Integer[] cities = new Integer[n];
-         //here we have used Integer [] (wrapper -stores integer as objects) and allows null value because we are going to use comparror which we cant do in int
+         //here we have used Integer [] (wrapper -stores integer as objects) and (allows null value also)because we are going to use comparror which we cant do in int[]
         for (int i = 0; i < n; i++) {
             cities[i] = i;
         }
