@@ -37,14 +37,14 @@ public class Solution {
             }
         }
 
-        // Check the 45° diagonal
+        // Check the main diagonal
         for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
             if (board[i][j] == 'Q') {
                 return false;
             }
         }
 
-        // Check the 135° diagonal
+        // Check the another  diagonal
         for (int i = row - 1, j = col + 1; i >= 0 && j < board.length; i--, j++) {
             if (board[i][j] == 'Q') {
                 return false;
