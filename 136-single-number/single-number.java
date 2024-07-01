@@ -1,5 +1,5 @@
 // xor will give 0 for identical nums .so the approch is xor all nums and distict will be return 
-/*
+
 class Solution {
     public int singleNumber(int[] nums) {
         int res=nums[0];
@@ -10,7 +10,7 @@ class Solution {
         return res;
     }
 }
-*/
+/*
 class Solution {
     public int singleNumber(int[] nums) {
         HashSet<Integer> set=new HashSet<>();
@@ -30,3 +30,4 @@ class Solution {
 
     }
 }
+*/
