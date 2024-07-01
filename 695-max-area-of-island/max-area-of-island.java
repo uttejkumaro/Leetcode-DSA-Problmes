@@ -17,7 +17,7 @@ class Solution {
         return(1+maxAreaIsland(grid,r+1,c)+
                 maxAreaIsland(grid,r-1,c)+
                 maxAreaIsland(grid,r,c+1)+
-                maxAreaIsland(grid,r,c-1) );
+                maxAreaIsland(grid,r,c-1) );//1 added to add current  grid
                 
     }
     
