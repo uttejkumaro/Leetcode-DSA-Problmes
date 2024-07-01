@@ -11,6 +11,7 @@
     }
 }
 */
+//sliding window concept
 class Solution{
     public boolean threeConsecutiveOdds(int[] arr) {
         int count=0;
