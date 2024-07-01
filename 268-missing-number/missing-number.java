@@ -1,4 +1,4 @@
-class Solution {
+/* class Solution {
     public int missingNumber(int[] nums) {
         Set<Integer>numset=new HashSet<Integer>();
         for(int num:nums){
@@ -13,5 +13,16 @@ class Solution {
         return -1;
 
         
+    }
+} */
+class Solution {
+    public int missingNumber(int[] nums) {
+        int n=nums.length-1;
+        int actSum=(n+1)*(n+2)/2;
+        int sum=0;
+        for(int i:nums){
+            sum=sum+i;
+        }
+        return actSum-sum;
     }
 }
