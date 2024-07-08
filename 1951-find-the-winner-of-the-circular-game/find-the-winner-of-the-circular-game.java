@@ -16,7 +16,7 @@ class Solution {
         
     }
 }
-*/
+
 //recursive
 class Solution {
     public int findTheWinner(int n, int k) {
@@ -30,4 +30,14 @@ class Solution {
         return (find((n-1),k)+k)%n;
     }
 }
-
+*/
+//iterative 
+class Solution {
+    public int findTheWinner(int n, int k) {
+        int remain=0;
+        for(int i=1;i<=n;i++){
+            remain=(remain+k)%i;
+        }
+        return remain+1;
+    }
+}
