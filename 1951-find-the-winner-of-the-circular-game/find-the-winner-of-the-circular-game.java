@@ -1,4 +1,5 @@
 //queue
+/* O(n*k)
 class Solution {
     public int findTheWinner(int n, int k) {
         Queue<Integer> queue=new LinkedList<>();
@@ -11,8 +12,22 @@ class Solution {
         }
         queue.remove(); 
         }
-        return queue.peek();
-      
+        return queue.peek();     
         
     }
 }
+*/
+//recursive
+class Solution {
+    public int findTheWinner(int n, int k) {
+        return find(n,k)+1;
+
+    }
+    int find(int n,int k){
+        if(n==1){
+            return 0;
+            }
+        return (find((n-1),k)+k)%n;
+    }
+}
+
