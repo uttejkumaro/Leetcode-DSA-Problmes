@@ -5,7 +5,7 @@ class Solution {
         double twt=0;//total waiting time
         for(int customer[]:customers){
             int AT=customer[0];//arival time
-            int BT=customer[1];//busy time
+            int BT=customer[1];//brust  time
         
         if(currT<AT){//currT is idle so move to AT
         currT=AT;
