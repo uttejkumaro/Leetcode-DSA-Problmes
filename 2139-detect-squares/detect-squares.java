@@ -1,6 +1,3 @@
-import java.util.HashMap;
-import java.util.Map;
-
 class DetectSquares {
     private Map<Integer, Map<Integer, Integer>> points;
 
