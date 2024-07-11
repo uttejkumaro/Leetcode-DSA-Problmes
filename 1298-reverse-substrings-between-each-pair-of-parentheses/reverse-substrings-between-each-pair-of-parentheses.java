@@ -1,4 +1,4 @@
-class Solution {
+/* class Solution {
     public String reverseParentheses(String s) {
         Stack<Character> stack = new Stack<>();
         for (char c : s.toCharArray()) {
@@ -22,5 +22,28 @@ class Solution {
             result.append(stack.pop());
         }
         return result.reverse().toString(); // Reverse result to get the correct order
+    }
+}
+*/
+import java.util.Stack;
+
+class Solution {
+    public String reverseParentheses(String s) {
+        Stack<StringBuilder> stack = new Stack<>();
+        StringBuilder current = new StringBuilder();
+        
+        for (char c : s.toCharArray()) {
+            if (c == '(') {
+                stack.push(current);
+                current = new StringBuilder();
+            } else if (c == ')') {
+                current.reverse();
+                current = stack.pop().append(current);
+            } else {
+                current.append(c);
+            }
+        }
+        
+        return current.toString();
     }
 }
