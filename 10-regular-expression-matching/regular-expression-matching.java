@@ -10,9 +10,13 @@ class Solution {
                 dp[0][i] = dp[0][i - 2];
             }
         }
-
-        for (int i = 1; i < dp.length; i++) {
-            for (int j = 1; j < dp[0].length; j++) {
+            /**        '' a  *
+                    '' T  F  T
+                    a  F  F  F
+                    a  F  F  F
+ */
+        for (int i = 1; i < dp.length; i++) { //s
+            for (int j = 1; j < dp[0].length; j++) { //p
                 if (p.charAt(j - 1) == '.' || p.charAt(j - 1) == s.charAt(i - 1)) {
                     dp[i][j] = dp[i - 1][j - 1];
                 } else if (p.charAt(j - 1) == '*') {
@@ -27,3 +31,9 @@ class Solution {
         return dp[s.length()][p.length()];
     }
 }
+/** 
+  ''  a  *
+'' T  F  T
+a  F  T  T
+a  F  F  T
+ */
