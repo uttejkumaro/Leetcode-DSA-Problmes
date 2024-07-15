@@ -18,7 +18,6 @@ class Solution {
         Map<Integer, TreeNode> nodeMap = new HashMap<>();
         Set<Integer> childSet = new HashSet<>();
 
-        // Process each description
         for (int[] des : descriptions) {
             int parentVal = des[0];
             int childVal = des[1];
