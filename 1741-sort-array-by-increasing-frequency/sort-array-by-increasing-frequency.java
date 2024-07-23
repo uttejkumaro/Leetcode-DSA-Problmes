@@ -5,13 +5,11 @@ class Solution {
         for (int num : nums) {
             frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
         }
-
         // Convert the array into a list for easier manipulation
         List<Integer> numList = new ArrayList<>();
         for (int num : nums) {
             numList.add(num);
         }
-
         // Sort the list based on frequency and then by value
         numList.sort((a, b) -> {
             int freqA = frequencyMap.get(a);
@@ -23,7 +21,6 @@ class Solution {
             }
         });
 
-        // Convert the sorted list back to an array
         for (int i = 0; i < nums.length; i++) {
             nums[i] = numList.get(i);
         }
