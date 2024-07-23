@@ -1,6 +1,6 @@
 class Solution {
     public int[] frequencySort(int[] nums) {
-        // Create a map to store the frequency of each number
+        //  map to store the frequency
         Map<Integer, Integer> frequencyMap = new HashMap<>();
         for (int num : nums) {
             frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
