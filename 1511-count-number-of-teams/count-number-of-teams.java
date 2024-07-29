@@ -20,6 +20,8 @@ class Solution {
     }
 }
 */
+// DP =O(N^2)
+// another efficient approch -o(nlogn)
 class Solution {
     public int numTeams(int[] rating) {
         int n = rating.length;
