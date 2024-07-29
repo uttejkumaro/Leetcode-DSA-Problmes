@@ -1,3 +1,5 @@
+/*
+// brute -O(n^3)
 class Solution {
     public int numTeams(int[] rating) {
         int n = rating.length;
@@ -14,6 +16,27 @@ class Solution {
             }
         }
         
+        return count;
+    }
+}
+*/
+class Solution {
+    public int numTeams(int[] rating) {
+        int n = rating.length;
+        int count=0;
+        for(int j=0;j<n;j++){
+            //left
+            int lLess=0,rLess=0,lMore=0,rMore=0;
+            for(int i=0;i<j;i++){
+                if(rating[i]<rating[j]) lLess ++;
+                if(rating[i]>rating[j]) lMore ++;
+            }
+             for(int k=j+1;k<n;k++){
+                if(rating[k]<rating[j]) rLess ++;
+                if(rating[k]>rating[j]) rMore ++;
+            }
+            count+=lLess*rMore +rLess*lMore;
+        }
         return count;
     }
 }
