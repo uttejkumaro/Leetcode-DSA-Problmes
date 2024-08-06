@@ -1,3 +1,4 @@
+/*
 class Solution {
     public int minimumPushes(String word) {
         int ans=0;
@@ -9,6 +10,19 @@ class Solution {
         for(int i=0;i<count.length;i++){
             int n=count.length;
             ans+=count[n-i-1]*(i/8+1);
+        }
+        return ans;
+    }
+}
+*/
+class Solution {
+   
+    public int minimumPushes(String word) {
+        int n = word.length();
+        int ans = 0;
+        while(n > 0) {
+            ans += n;
+            n -= 8;
         }
         return ans;
     }
