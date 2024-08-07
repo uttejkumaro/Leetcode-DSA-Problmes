@@ -1,16 +1,16 @@
 class Solution {
-    private static final String[] less20 = {
+    private static String[] less20 = {
         "", "One", "Two", "Three", "Four", "Five", "Six", "Seven", 
         "Eight", "Nine", "Ten", "Eleven", "Twelve", "Thirteen", 
         "Fourteen", "Fifteen", "Sixteen", "Seventeen", "Eighteen", "Nineteen"
     };
     
-    private static final String[] tens = {
+    private static   String[] tens = {
         "", "Ten", "Twenty", "Thirty", "Forty", "Fifty", "Sixty", 
         "Seventy", "Eighty", "Ninety"
     };
     
-    private static final String[] thousands = {
+    private static  String[] thousands = {
         "", "Thousand", "Million", "Billion"
     };
     
