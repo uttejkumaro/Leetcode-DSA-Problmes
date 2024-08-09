@@ -17,13 +17,13 @@ class Solution {
         }
         int sum = 15; // Expected sum for each row, column, and diagonal
         return (grid[row][col] + grid[row][col + 1] + grid[row][col + 2] == sum) && // row 1
-               (grid[row + 1][col] + grid[row + 1][col + 1] + grid[row + 1][col + 2] == sum) && // row 2
-               (grid[row + 2][col] + grid[row + 2][col + 1] + grid[row + 2][col + 2] == sum) && // row 3
-               (grid[row][col] + grid[row + 1][col] + grid[row + 2][col] == sum) && // column 1
-               (grid[row][col + 1] + grid[row + 1][col + 1] + grid[row + 2][col + 1] == sum) && // column 2
-               (grid[row][col + 2] + grid[row + 1][col + 2] + grid[row + 2][col + 2] == sum) && // column 3
-               (grid[row][col] + grid[row + 1][col + 1] + grid[row + 2][col + 2] == sum) && // diagonal 1
-               (grid[row][col + 2] + grid[row + 1][col + 1] + grid[row + 2][col] == sum); // diagonal 2
+               (grid[row + 1][col] + grid[row + 1][col + 1] + grid[row + 1][col + 2]==sum) && // row 
+               (grid[row + 2][col] +grid[row + 2][col + 1] + grid[row + 2][col + 2] == sum) && // row 
+               (grid[row][col] +grid[row + 1][col] + grid[row + 2][col]== sum) && // column 1
+               (grid[row][col+1] +grid[row+1][col + 1] + grid[row + 2][col+1]==sum) && // column 2
+               (grid[row][col+ 2] +grid[row + 1][col +2]+grid[row +2][col+2]==sum) && // olumn 3
+               (grid[row][col] + grid[row + 1][col + 1] +  grid[row + 2][col+2]== sum) && // diagonal 1
+               (grid[row][col +2]+grid[row + 1][col +1] + grid[row + 2][col] == sum); // diagonal 2
     }
     public int numMagicSquaresInside(int[][] grid) {
         int count = 0;
