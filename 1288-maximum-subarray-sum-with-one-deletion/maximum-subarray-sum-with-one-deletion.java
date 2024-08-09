@@ -6,7 +6,7 @@ class Solution {
         int pick=arr[0];
         int delete=0;
         for(int i=1;i<n;i++){
-            delete=Math.max(pick,delete+arr[i]);
+            delete=Math.max(pick,delete+arr[i]);//cna be deleted cuurr element or we can skip
             pick=Math.max(arr[i],pick+arr[i]);
             max=Math.max(max,Math.max(delete,pick));
 
