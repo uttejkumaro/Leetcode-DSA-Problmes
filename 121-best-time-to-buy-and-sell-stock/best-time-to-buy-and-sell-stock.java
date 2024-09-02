@@ -1,17 +1,28 @@
 //time complexity:O(n)
 class Solution {
     public int maxProfit(int[] prices) {
-    int minprice=Integer.MAX_VALUE;//assin to max value 
-    int maxprofit=0;
+    int minPrice=Integer.MAX_VALUE;
+    int profit=0;
     for(int i=0;i<prices.length;i++){
-        if (prices[i]<minprice  ){
-            minprice=prices[i];
+        if(prices[i]<minPrice){
+            minPrice=prices[i];
         }
-        else if(prices[i]-minprice> maxprofit){
-            maxprofit=prices[i]-minprice;
+        else if(prices[i]-minPrice>profit){
+            profit=prices[i]-minPrice;
         }
-
-    }return maxprofit;
+    }
+    
         
+
+
+    return profit;
     }
 }
+// //int maxProfit = 0;
+// 	int mini = Arr[0];
+	
+// 	for(int i=1;i<Arr.length;i++){
+//         int curProfit = Arr[i] - mini;
+//         maxProfit = Math.max(maxProfit,curProfit);
+//         mini = Math.min(mini,Arr[i]);
+//         }
