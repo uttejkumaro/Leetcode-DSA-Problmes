@@ -1,4 +1,4 @@
-/*
+
 //t.c:O(nlogn)
 class Solution {
     public int majorityElement(int[] nums) {
@@ -7,22 +7,22 @@ class Solution {
         
     }
 }
-*/
-class Solution{
-    public int  majorityElement(int[] nums) {
-        int c=0;
-        int v=0;
-        for(int num:nums){
-            if(v==0){
-                c=num;
-            }
-            if(c==num){
-                v++;
-            }
-            else{
-            v--;}
-        }
-        return c;
-    }
 
-}
+// class Solution{
+//     public int  majorityElement(int[] nums) {
+//         int c=0;
+//         int v=0;
+//         for(int num:nums){
+//             if(v==0){
+//                 c=num;
+//             }
+//             if(c==num){
+//                 v++;
+//             }
+//             else{
+//             v--;}
+//         }
+//         return c;
+//     }
+
+// }
