@@ -5,6 +5,7 @@ class Solution {
         for(int []i:intervals){
             if(!pq.isEmpty() && pq.peek()<i[0]){
                 pq.poll();
+                 // Remove the group that ends earliest
             }
             pq.add(i[1]);
 
