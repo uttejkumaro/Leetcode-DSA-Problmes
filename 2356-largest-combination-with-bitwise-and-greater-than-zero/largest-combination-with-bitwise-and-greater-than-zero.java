@@ -9,15 +9,15 @@ class Solution {
             
         }
         if(and!=0 ) return n;
-        int count[]=new int[24];
+        int count[]=new int[32];
         for( int i:candidates ){
-            for(int j=0;j<24;j++){
+            for(int j=0;j<32;j++){
                 if((i&(1<<j))!=0) count[j]++;
             }
             
         }
         Arrays.sort(count);
-        return count[23];
+        return count[31];
 
 
         
