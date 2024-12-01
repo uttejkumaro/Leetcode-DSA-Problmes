@@ -12,17 +12,33 @@
         
 //     }
 // }
+//  class Solution {
+//   public boolean checkIfExist(int[] arr) {
+//     int n=arr.length;
+//     HashMap<Integer,Integer>mp=new HashMap<>();
+//     for(int i=0;i<n;i++){
+//         int num=arr[i];
+//         if(mp.containsKey(2*num) || ( num%2 ==0  &&mp.containsKey(num/2) )){
+//             return true;
+//         }
+//         mp.put(num,mp.getOrDefault(num,0)+1);
+//     }
+//     return false;
+//   }
+//  }
  class Solution {
   public boolean checkIfExist(int[] arr) {
-    int n=arr.length;
-    HashMap<Integer,Integer>mp=new HashMap<>();
+     int n=arr.length;
+    HashSet<Integer>mp=new HashSet<>();
     for(int i=0;i<n;i++){
         int num=arr[i];
-        if(mp.containsKey(2*num) || ( num%2 ==0  &&mp.containsKey(num/2) )){
+        if(mp.contains(2*num) || ( num%2 ==0  &&mp.contains(num/2) )){
             return true;
         }
-        mp.put(num,mp.getOrDefault(num,0)+1);
+        mp.add(num);
     }
     return false;
   }
+    
+  
  }
