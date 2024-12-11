@@ -6,7 +6,7 @@ class Solution {
         int j=0;
         
         for(int i=0;i<n;i++){
-            while(j<n && nums[j]-nums[i]<=2*k){
+            while(j<n && nums[j]-nums[i]<=2*k){//(nums[i]+k<nums[j]-k
                 j++;
             }
             count=Math.max(j-i,count);
