@@ -38,7 +38,8 @@ class Solution {
         minHeap.add(new int[]{nums[i],i});
        }
         while(!minHeap.isEmpty()){
-            int sort[]=minHeap.remove();
+           // int sort[]=minHeap.remove();
+            int sort[]=minHeap.poll();
             int num=sort[0];
             int idx=sort[1];
             if(!mark[idx]){
