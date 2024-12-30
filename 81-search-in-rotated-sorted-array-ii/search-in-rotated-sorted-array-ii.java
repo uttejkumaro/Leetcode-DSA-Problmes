@@ -14,12 +14,13 @@ class Solution {
     while(low<=high){
         int mid=low+(high-low)/2;
         if(nums[mid]==target) return true;
+        //duplicates hanle
         if(nums[low]==nums[mid] && nums[mid]==nums[high]){
             low++;
             high--;
             continue;
         }
-        if(nums[low]<=nums[mid]){
+        if(nums[low]<=nums[mid]){// Left half is sorted
             if(nums[low]<=target && target<=nums[mid]) high=mid-1;
             else low=mid+1;
         }
