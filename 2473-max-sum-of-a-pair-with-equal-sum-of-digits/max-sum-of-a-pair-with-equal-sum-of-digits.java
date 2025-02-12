@@ -28,7 +28,7 @@ class Solution {
         int s=sum(nums[i]);
         if(mp.containsKey(s)){
             max=Math.max(max,nums[i]+mp.get(s));
-            mp.put(s,Math.max(nums[i],mp.get(s)));
+            mp.put(s,Math.max(nums[i],mp.get(s)));//if same num sum upadte with which is more val 
         }
         else{
             mp.put(sum(nums[i]),nums[i]);
