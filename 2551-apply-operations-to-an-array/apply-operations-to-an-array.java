@@ -9,10 +9,10 @@ class Solution {
             }
 
         }
-        int count=0;
-        for(int i=0;i<n;i++){
-            if(nums[i]==0) count++;
-        }
+        // int count=0;
+        // for(int i=0;i<n;i++){
+        //     if(nums[i]==0) count++;
+        // }
         int j=0;
         for(int i=0;i<n;i++){
             if(nums[i]!=0){
