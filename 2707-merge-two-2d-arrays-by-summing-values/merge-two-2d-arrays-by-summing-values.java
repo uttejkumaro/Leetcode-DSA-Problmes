@@ -7,24 +7,26 @@ class Solution {
         for(int arr[]:nums1){
             int a=arr[0];
             int b=arr[1];
-            if(tp.containsKey(a)){
-                tp.put(a,tp.get(a)+b);
-            }
-            else{
+            // if(tp.containsKey(a)){
+            //     tp.put(a,tp.get(a)+b);
+            // }
+            // else{
 
-            tp.put(a,b);
-            }
+            // tp.put(a,b);
+            // }
+            tp.put(a, tp.getOrDefault(a, 0) + b);
         }
           for(int arr[]:nums2){
             int a=arr[0];
             int b=arr[1];
-            if(tp.containsKey(a)){
-                tp.put(a,tp.get(a)+b);
-            }
-            else{
+            // if(tp.containsKey(a)){
+            //     tp.put(a,tp.get(a)+b);
+            // }
+            // else{
 
-            tp.put(a,b);
-            }
+            // tp.put(a,b);
+            // }
+            tp.put(a, tp.getOrDefault(a, 0) + b);
         }
         ArrayList<int[]>al=new ArrayList<>();
         for(Map.Entry<Integer,Integer>e:tp.entrySet()){
