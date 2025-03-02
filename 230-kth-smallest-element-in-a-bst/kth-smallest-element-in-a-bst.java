@@ -21,16 +21,30 @@ class Solution {
         inorder(root,k);
         return res;
     }
-    void inorder(TreeNode node,int k){
-        if(node==null){
-            return;
-        }
-        inorder(node.left,k);
+    void inorder(TreeNode root,int k){
+        if(root==null) return;
+        inorder(root.left,k);
         count++;
-        if(count==k){
-            res=node.val;
+        if(count==k) {
+            res=root.val;
             return ;
         }
-        inorder(node.right,k);
+        inorder(root.right,k);
     }
 }
+/* class Solution {
+
+    public int kthSmallest(TreeNode root, int k) {
+        List<Integer> list = new ArrayList<>();
+        inorder(root, list);
+        return list.get(k - 1);
+    }
+
+    private void inorder(TreeNode root, List<Integer> list) {
+        if (root == null) return;
+
+        inorder(root.left, list);
+        list.add(root.val);
+        inorder(root.right, list);
+    }
+}*/
