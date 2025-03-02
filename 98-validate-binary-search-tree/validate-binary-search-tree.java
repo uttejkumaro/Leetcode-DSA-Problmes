@@ -32,24 +32,37 @@
 //         return dfs(node.left, min, node.val) && dfs(node.right, node.val, max);
 //     }
 // }
-class Solution {
-    public boolean isValidBST(TreeNode root) {
-        ArrayList<TreeNode>al=new ArrayList<>();
+// class Solution {
+//     public boolean isValidBST(TreeNode root) {
+//         ArrayList<TreeNode>al=new ArrayList<>();
         
-        inOrder(root,al);
-        for(int i=1;i<al.size();i++){
-            if(al.get(i).val<=al.get(i-1).val) return false;
+//         inOrder(root,al);
+//         for(int i=1;i<al.size();i++){
+//             if(al.get(i).val<=al.get(i-1).val) return false;
 
-        }
-        return true;
-    }
-    void inOrder(TreeNode root,ArrayList<TreeNode>al){
-        if(root==null) return ;
-        inOrder(root.left,al);
-        al.add(root);
-        inOrder(root.right,al);
+//         }
+//         return true;
+//     }
+//     void inOrder(TreeNode root,ArrayList<TreeNode>al){
+//         if(root==null) return ;
+//         inOrder(root.left,al);
+//         al.add(root);
+//         inOrder(root.right,al);
         
 
-    }
+//     }
    
+//     }
+class Solution {
+    TreeNode prev = null; 
+    public boolean isValidBST(TreeNode root) {
+        return inOrder(root);
     }
+    private boolean inOrder(TreeNode root) {
+        if (root == null) return true;        
+        if (!inOrder(root.left)) return false;
+        if (prev != null && root.val <= prev.val) return false;
+        prev = root;         
+        return inOrder(root.right);
+    }
+}
