@@ -1,12 +1,19 @@
-/**Prim’s algorithm builds the MST by:
+/**
 
-Starting from any vertex.
-Repeatedly adding the smallest edge that connects a visited vertex to an unvisited one.
-Growing the tree until all vertices are included.
-For this problem:
 
-Use a priority queue to always pick the smallest edge to an unvisited point.
-Track visited points and accumulate the cost. */
+// Prim’s algorithm builds the MST by:
+
+// Starting from any vertex.
+// Repeatedly adding the smallest edge that connects a visited vertex to an unvisited one.
+// Growing the tree until all vertices are included.
+// For this problem:
+
+// Use a priority queue to always pick the smallest edge to an unvisited point.
+// Track visited points and accumulate the cost. 
+
+// Time Complexity
+// O (ELogE)   
+// Spaca O (E) 
 class Solution {
     public int minCostConnectPoints(int[][] points) {
         int n=points.length;
@@ -43,5 +50,62 @@ class Solution {
         return total;
       
 
+    }
+}
+ */
+//  Kruskal’s Algorithm
+// Intuition
+// Kruskal’s algorithm builds the MST by:
+
+// Considering all possible edges.
+// Sorting them by weight (smallest first).
+// Adding edges to the MST if they connect two disconnected components, using a Union-Find data structure to detect cycles.
+// For this problem:
+
+// Generate all edges (pairs of points) and their Manhattan distances.
+// Sort edges by cost.
+// Use Union-Find to union points, adding edge weights until all points are connected.
+class Solution {
+    public int minCostConnectPoints(int[][] points) {
+        int n = points.length;
+        List<int []>edges=new ArrayList<>();
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                int cost=Math.abs(points[i][0]-points[j][0])+Math.abs(points[i][1]-points[j][1]);
+                edges.add(new int[]{i,j,cost});
+            }
+        }
+        edges.sort((a,b)->a[2]-b[2]);
+        //union find intliasation
+        int []parent=new int[n];
+        for(int i=0;i<n;i++){
+            parent[i]=i;
+        }
+        //mst build
+        int totalCost=0;
+        int edgesUsed=0;
+        for(int edge[]:edges){
+            int u=edge[0];
+            int v=edge[1];
+            int cost=edge[2];
+            if(find(parent,u)!=find(parent,v)){
+                union(parent,u,v);
+                totalCost+=cost;
+                edgesUsed++;
+                if(edgesUsed==n-1)break;
+            }
+        }
+        return totalCost;
+    }
+    int find(int parent[],int u){
+        if(parent[u]!=u){
+            parent[u]=find(parent,parent[u]);
+        }
+        return parent[u];
+
+    }
+    void union(int parent[],int u,int v){
+        parent[find(parent,u)]=find(parent,v);
+        
     }
 }
