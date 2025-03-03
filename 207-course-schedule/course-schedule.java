@@ -1,3 +1,5 @@
+/**
+
 class Solution {
     public boolean canFinish(int numCourses, int[][] prerequisites) {
         int n=prerequisites.length;
@@ -38,5 +40,40 @@ class Solution {
         return false;
 
 
+    }
+}
+ */
+ //khans topo bfs
+
+class Solution {
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+
+        int n=prerequisites.length;
+        int inDegree[]=new int [numCourses];
+        List<List<Integer>>graph=new ArrayList<>();//adjancy List
+        for(int i=0;i<numCourses;i++){
+            graph.add(new ArrayList<>());
+        }
+        for(int pre[]:prerequisites){
+            graph.get(pre[1]).add(pre[0]);// b->a
+            inDegree[pre[0]]++;
+        }
+        Queue<Integer>q=new LinkedList<>();
+        for(int i=0;i<numCourses;i++){
+            if(inDegree[i]==0){
+                q.add(i);
+            }
+        }
+        int count=0;
+        while(!q.isEmpty()){
+           int curr=q.poll();
+           count++;
+            for(int neigh:graph.get(curr)){
+                inDegree[neigh]--;
+                if(inDegree[neigh]==0){q.add(neigh);}
+
+            }
+        }
+        return count==numCourses;
     }
 }
