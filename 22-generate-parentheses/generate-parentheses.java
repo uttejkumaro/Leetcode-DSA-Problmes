@@ -1,19 +1,22 @@
 class Solution {
     public List<String> generateParenthesis(int n) {
-        List<String>result=new ArrayList<>();
-        helper(result,"",0,0,n);
-        return result;
+
+        ArrayList<String>al=new ArrayList<>();
+        gen(al,"",n,0,0);
+        return al;
+        
     }
-    void helper(List<String>result,String current,int open,int  close,int max){
-        if(current.length()==2*max){
-            result.add(current);
+    void gen(ArrayList<String>al,String curr,int n,int start,int end){
+        if(curr.length()==2*n){
+            al.add(curr);
             return;
+
         }
-         if (open < max) {
-           helper(result, current + "(", open + 1, close, max);
+        if(start<n){
+            gen(al,curr+"(",n,start+1,end);
         }
-        if (close < open) {
-            helper(result, current + ")", open, close + 1, max);
+        if(end<start){
+            gen(al,curr+")",n,start,end+1);
         }
-    }      
+    }
 }
