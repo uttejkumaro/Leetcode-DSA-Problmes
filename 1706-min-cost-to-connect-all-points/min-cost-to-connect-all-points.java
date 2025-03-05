@@ -149,10 +149,10 @@ class Solution {
 
             if (rank[parentOfNode1] > rank[parentOfNode2]) {
                  parent[parentOfNode2] = parentOfNode1;
-                 rank[parentOfNode2] += rank[parentOfNode1];
+                 rank[parentOfNode1] += rank[parentOfNode2];
             } else {
                 parent[parentOfNode1] = parentOfNode2;
-                rank[parentOfNode1] += rank[parentOfNode2];
+                rank[parentOfNode2] += rank[parentOfNode1];
             }
 
 
