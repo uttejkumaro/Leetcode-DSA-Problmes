@@ -1,6 +1,4 @@
 /**
-
-
 // Prim’s algorithm builds the MST by:
 
 // Starting from any vertex.
@@ -184,9 +182,7 @@ class Solution {
             }
         }
 
-        Collections.sort(edges, (obj1, obj2) -> {
-            return Integer.compare(obj1.weight, obj2.weight);
-        });
+        Collections.sort(edges, (obj1, obj2) -> obj1.weight-obj2.weight);
 
         DSU dsu = new DSU(n);
         int remainingEdges = n - 1;
