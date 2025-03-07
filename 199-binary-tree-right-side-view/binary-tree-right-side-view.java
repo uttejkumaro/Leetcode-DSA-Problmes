@@ -24,7 +24,8 @@ class Solution {
             TreeNode rightmost=null;
             for(int i=0;i<size;i++){
                 TreeNode curr=q.poll();
-                rightmost=curr;
+                if(i==size-1) res.add(curr.val);
+               
                 if(curr.left!=null){
                     q.add(curr.left);
                 }
@@ -32,8 +33,7 @@ class Solution {
                     q.add(curr.right);
                 }
             }
-            if(rightmost!=null) res.add(rightmost.val);
-
+           
         
         }
         return res;
