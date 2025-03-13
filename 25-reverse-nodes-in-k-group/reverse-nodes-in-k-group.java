@@ -5,8 +5,8 @@ class Solution {
         ListNode currNode = head;
         while (currNode != null) {
             result++;
-            ListNode nextNodeAdress = currNode.next;
-            currNode = nextNodeAdress;
+            currNode=currNode.next;
+          
         }
         return result;
     }
@@ -21,9 +21,9 @@ class Solution {
         // 30 --> 20 --> 10 --> 60 --> 50 --> 40
         while (length >= k) {
             // reverse the k blocks 
-            ListNode previousNode = null;
+            ListNode previousNode=null;
             ListNode startingNode = currNode;
-            for (int index = 0; index < k; index++) {
+            for (int index = 0; index < k; index++) {//reverse ll
                 ListNode nextNodeAdress = currNode.next;
                 currNode.next = previousNode;
                 previousNode = currNode;
@@ -37,10 +37,53 @@ class Solution {
             tail = startingNode;
             length -= k;
         }
-        if (tail != null) {
+        
             tail.next = currNode;
-        }
+       
         
         return newHead;
     }
 }
+// //class Solution {
+
+//     private int findLength(ListNode head) {
+//         ListNode curr = head;
+//         int length = 0;
+
+//         while (curr != null) {
+//             curr = curr.next;
+//             length++;
+//         }
+//         return length;
+//     }
+
+//     public ListNode reverseKGroup(ListNode head, int k) {
+        
+
+//         int length = findLength(head);
+//         if (length < k) {
+//             return head;
+//         }
+
+//         ListNode dummy = new ListNode(-1);
+//         ListNode tail = dummy;
+
+//         ListNode curr = head;
+//         while (length >= k) {
+//             ListNode firstNode = curr;
+//             ListNode prev = null, next;
+//             for (int index = 1; index <= k; index++) {
+//                 next = curr.next;
+//                 curr.next = prev;
+//                 prev = curr;
+//                 curr = next;
+//             }
+//             tail.next = prev;
+//             tail = firstNode;
+//             length -= k;
+//         }
+//         tail.next = curr;
+//         return dummy.next;
+
+//     }
+// }
