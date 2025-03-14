@@ -208,37 +208,41 @@ class Solution {
 //         return mstCost;
 //     }
 // }
+import java.util.*;
+
 class Solution {
     public int minCostConnectPoints(int[][] points) {
-        int n=points.length;
-        int m=points[0].length;
-        int minCost=0;
-        PriorityQueue<int[]>pq=new PriorityQueue<>((a,b)->a[0]-b[0]);
-        boolean vis[]=new boolean[n];
-        int vertices=0;        
-      
-        for(int i=1;i<n;i++){
-            int cost=Math.abs( points[0][0]- points[i][0])+Math.abs( points[0][1]- points[i][1]);
-            pq.add(new int []{cost,i});           
-        }
-          vis[0]=true;
-        while(!pq.isEmpty() && vertices<n){
-            int []curr=pq.poll();
-            int cos=curr[0];
-            int node=curr[1];
-            if(vis[node]) continue;
-            vis[node]=true;
-            minCost+=cos;
+        int n = points.length;
+        int minCost = 0;
+        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[0] - b[0]); // Min heap
+        boolean[] vis = new boolean[n]; // Visited array
+        int vertices = 0; // Count of vertices in MST
+
+        // Start from the first node
+        pq.offer(new int[]{0, 0}); // {cost, node}
+
+        while (!pq.isEmpty() && vertices < n) {
+            int[] curr = pq.poll();
+            int cost = curr[0];
+            int node = curr[1];
+
+            // If already visited, skip
+            if (vis[node]) continue;
+
+            // Mark as visited
+            vis[node] = true;
+            minCost += cost;
             vertices++;
-            for(int i=0;i<n;i++){
-                if(!vis[i]){
-                    int newCost=Math.abs( points[i][0]- points[node][0])+Math.abs( points[i][1]- points[node][1]);
-                    pq.offer(new int[]{newCost,i});
+
+            // Add edges from `node` to all unvisited nodes
+            for (int i = 0; i < n; i++) {
+                if (!vis[i]) {
+                    int newCost = Math.abs(points[i][0] - points[node][0]) + 
+                                  Math.abs(points[i][1] - points[node][1]);
+                    pq.offer(new int[]{newCost, i});
                 }
             }
-            
         }
         return minCost;
     }
 }
-
