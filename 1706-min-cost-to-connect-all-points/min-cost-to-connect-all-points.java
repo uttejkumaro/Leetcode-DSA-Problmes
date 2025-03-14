@@ -16,7 +16,8 @@ class Solution {
     public int minCostConnectPoints(int[][] points) {
         int n=points.length;
         int m=points[0].length;
-        PriorityQueue<int []>pq=new PriorityQueue<>((a,b)->a[0]-b[0]);
+        PriorityQueue<int []>pq=new PriorityQueue<>((a,b)->a[0]-b[0]);//store cost,node value
+        
         boolean vis[]=new boolean[n];
         int total=0;
         int Verti=0;
@@ -110,100 +111,134 @@ class Solution {
     }
 }
 
- */
- class Solution {
+//  */
+//  class Solution {
 
-    class DSU {
-        int[] parent;
-        int[] rank;
-        int n;
+//     class DSU {
+//         int[] parent;
+//         int[] rank;
+//         int n;
 
-        public DSU(int n) {
-            this.n = n;
-            this.parent = new int[n];
-            this.rank = new int[n];
-            for (int node = 0; node < n; node++) {
-                this.parent[node] = node;
-                this.rank[node] = 1;
-            }
-        }
+//         public DSU(int n) {
+//             this.n = n;
+//             this.parent = new int[n];
+//             this.rank = new int[n];
+//             for (int node = 0; node < n; node++) {
+//                 this.parent[node] = node;
+//                 this.rank[node] = 1;
+//             }
+//         }
 
-        public int find(int node) {
-            if (parent[node] == node) {
-                return node;
-            }
+//         public int find(int node) {
+//             if (parent[node] == node) {
+//                 return node;
+//             }
 
-            int parentLevelComponent = find(parent[node]);
-            // Path compression
-            parent[node] = parentLevelComponent;
-            return parentLevelComponent;
-        }
+//             int parentLevelComponent = find(parent[node]);
+//             // Path compression
+//             parent[node] = parentLevelComponent;
+//             return parentLevelComponent;
+//         }
 
-        public void union(int node1, int node2) {
-            int parentOfNode1 = find(node1);
-            int parentOfNode2 = find(node2);
+//         public void union(int node1, int node2) {
+//             int parentOfNode1 = find(node1);
+//             int parentOfNode2 = find(node2);
              
-            if (parentOfNode1 == parentOfNode2) return;
+//             if (parentOfNode1 == parentOfNode2) return;
 
-            if (rank[parentOfNode1] > rank[parentOfNode2]) {
-                 parent[parentOfNode2] = parentOfNode1;
-                 rank[parentOfNode1] += rank[parentOfNode2];
-            } else {
-                parent[parentOfNode1] = parentOfNode2;
-                rank[parentOfNode2] += rank[parentOfNode1];
-            }
+//             if (rank[parentOfNode1] > rank[parentOfNode2]) {
+//                  parent[parentOfNode2] = parentOfNode1;
+//                  rank[parentOfNode1] += rank[parentOfNode2];
+//             } else {
+//                 parent[parentOfNode1] = parentOfNode2;
+//                 rank[parentOfNode2] += rank[parentOfNode1];
+//             }
 
 
-        }
-    }
+//         }
+//     }
 
-    class Edge {
-        int source;
-        int destination;
-        int weight;
+//     class Edge {
+//         int source;
+//         int destination;
+//         int weight;
 
-        public Edge (int source, int destination, int weight) {
-            this.source = source;
-            this.destination = destination;
-            this.weight = weight;
-        }
-    }
+//         public Edge (int source, int destination, int weight) {
+//             this.source = source;
+//             this.destination = destination;
+//             this.weight = weight;
+//         }
+//     }
 
+//     public int minCostConnectPoints(int[][] points) {
+//         int n = points.length;
+//         List<Edge> edges = new ArrayList<>();
+
+//         for (int point1 = 0; point1 < n; point1++) {
+//             for (int point2 = point1 + 1; point2 < n; point2++) {
+//                 int xDiff = Math.abs(points[point1][0] - points[point2][0]);
+//                 int yDiff = Math.abs(points[point1][1] - points[point2][1]);
+//                 int currDistance = xDiff + yDiff;
+//                 edges.add(new Edge(point1, point2, currDistance));
+//             }
+//         }
+
+//         Collections.sort(edges, (obj1, obj2) -> obj1.weight-obj2.weight);
+
+//         DSU dsu = new DSU(n);
+//         int remainingEdges = n - 1;
+//         int mstCost = 0;
+
+
+//         for (Edge edge: edges) {
+//             // System.out.println(edge.weight);
+
+//             int parentOfA = dsu.find(edge.source);
+//             int parentOfB = dsu.find(edge.destination);
+
+//             if (parentOfA == parentOfB) continue;
+//             // System.out.println("Adding: " + edge.source + " --> " + edge.destination);
+//             mstCost += edge.weight;
+//             dsu.union(edge.source, edge.destination);
+//             remainingEdges--;
+//             if (remainingEdges == 0)    break;
+
+//         }
+
+//         return mstCost;
+//     }
+// }
+class Solution {
     public int minCostConnectPoints(int[][] points) {
-        int n = points.length;
-        List<Edge> edges = new ArrayList<>();
-
-        for (int point1 = 0; point1 < n; point1++) {
-            for (int point2 = point1 + 1; point2 < n; point2++) {
-                int xDiff = Math.abs(points[point1][0] - points[point2][0]);
-                int yDiff = Math.abs(points[point1][1] - points[point2][1]);
-                int currDistance = xDiff + yDiff;
-                edges.add(new Edge(point1, point2, currDistance));
+        int n=points.length;
+        int m=points[0].length;
+        int minCost=0;
+        PriorityQueue<int[]>pq=new PriorityQueue<>((a,b)->a[0]-b[0]);
+        boolean vis[]=new boolean[n];
+        int vertices=0;        
+      
+        for(int i=1;i<n;i++){
+            int cost=Math.abs( points[0][0]- points[i][0])+Math.abs( points[0][1]- points[i][1]);
+            pq.add(new int []{cost,i});           
+        }
+          vis[0]=true;
+        while(!pq.isEmpty() && vertices<n){
+            int []curr=pq.poll();
+            int cos=curr[0];
+            int node=curr[1];
+            if(vis[node]) continue;
+            vis[node]=true;
+            minCost+=cos;
+            vertices++;
+            for(int i=0;i<n;i++){
+                if(!vis[i]){
+                    int newCost=Math.abs( points[i][0]- points[node][0])+Math.abs( points[i][1]- points[node][1]);
+                    pq.offer(new int[]{newCost,i});
+                }
             }
+            
         }
-
-        Collections.sort(edges, (obj1, obj2) -> obj1.weight-obj2.weight);
-
-        DSU dsu = new DSU(n);
-        int remainingEdges = n - 1;
-        int mstCost = 0;
-
-
-        for (Edge edge: edges) {
-            // System.out.println(edge.weight);
-
-            int parentOfA = dsu.find(edge.source);
-            int parentOfB = dsu.find(edge.destination);
-
-            if (parentOfA == parentOfB) continue;
-            // System.out.println("Adding: " + edge.source + " --> " + edge.destination);
-            mstCost += edge.weight;
-            dsu.union(edge.source, edge.destination);
-            remainingEdges--;
-            if (remainingEdges == 0)    break;
-
-        }
-
-        return mstCost;
+        return minCost;
     }
 }
+
