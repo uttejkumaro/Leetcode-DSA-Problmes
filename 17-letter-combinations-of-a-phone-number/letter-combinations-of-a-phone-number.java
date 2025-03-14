@@ -1,35 +1,29 @@
 class Solution {
-    public List<String> letterCombinations(String digits) {
-        List<String> combi = new ArrayList<>();
-        if (digits.length() == 0) return combi;        
-        String[] map = new String[]{
-            "",
-            "",
-            "abc",
-            "def",
-            "ghi",
-            "jkl",
-            "mno",
-            "pqrs",
-            "tuv",
-            "wxyz"
-        };
-        backtrack(0, new StringBuilder(), digits, map, combi);
-        return combi;
-    }
-    
-    void backtrack(int index, StringBuilder path, String digits, String[] letters, List<String> combi) {
-        if (path.length() == digits.length()) {
-            combi.add(path.toString());
+
+    private void helper(int index, String digits, int n, String[] store, StringBuilder path, List<String> result) {
+        if (index == n) {
+            if (path.toString().length() > 0)
+                result.add(path.toString());
             return;
         }
-        String possLetters = letters[digits.charAt(index) - '0'];
-        if (possLetters != null) {
-            for (int i = 0; i < possLetters.length(); i++) {
-                path.append(possLetters.charAt(i)); // Append one character at a time
-                backtrack(index + 1, path, digits, letters, combi);
-                path.deleteCharAt(path.length() - 1); // Remove the last character
-            }
+        char currentChar = digits.charAt(index);
+        int currentDigit = currentChar - '0';
+
+        for (char ch: store[currentDigit].toCharArray()) {
+            path.append(ch);
+            helper(index + 1, digits, n, store, path, result);
+            path.deleteCharAt(path.length() - 1);
         }
+        
+    }
+
+    public List<String> letterCombinations(String digits) {
+        List<String> result = new ArrayList<>();
+        StringBuilder path = new StringBuilder();
+        
+        String[] store = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+
+        helper(0, digits, digits.length(), store, path, result);
+        return result;
     }
 }
