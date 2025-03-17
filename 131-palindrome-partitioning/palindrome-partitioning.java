@@ -71,69 +71,35 @@ class Solution {
 //     }
 // }
 class Solution {
-    boolean dp[][];  // For palindrome checking
-    List<List<String>> memo[][];  // 2D memo array for partitions
-    
-    void build(String s) {
+    public List<List<String>> partition(String s) {
         int n = s.length();
-        dp = new boolean[n][n];
+        boolean[][] dp = new boolean[n][n]; // Palindrome lookup table
+        List<List<List<String>>> partitions = new ArrayList<>(n + 1);
         
-        // Initialize single character palindromes
-        for(int i = 0; i < n; i++) {
-            dp[i][i] = true;
+        // Initialize partition list
+        for (int i = 0; i <= n; i++) {
+            partitions.add(new ArrayList<>());
         }
+        partitions.get(0).add(new ArrayList<>()); // Base case: empty partition
         
-        // Build palindrome DP table
-        for(int len = 2; len <= n; len++) {
-            for(int start = 0; start + len - 1 < n; start++) {
-                int end = start + len - 1;
-                if(s.charAt(start) == s.charAt(end)) {
-                    if(len == 2 || dp[start + 1][end - 1]) {
-                        dp[start][end] = true;
+        // Build DP table for palindromes (O(n^2))
+        for (int end = 0; end < n; end++) {
+            for (int start = 0; start <= end; start++) {
+                if (s.charAt(start) == s.charAt(end) && (end - start <= 2 || dp[start + 1][end - 1])) {
+                    dp[start][end] = true;
+                    String substring = s.substring(start, end + 1);
+                    
+                    // Add valid partitions
+                    for (List<String> prevPartition : partitions.get(start)) {
+                        List<String> newPartition = new ArrayList<>(prevPartition);
+                        newPartition.add(substring);
+                        partitions.get(end + 1).add(newPartition);
                     }
                 }
             }
         }
-    }
-    
-    public List<List<String>> partition(String s) {
-        int n = s.length();
-        build(s);
-        // Initialize memo array: n x n (though we'll only use from each idx to end)
-        memo = new List[n][n];
-        return helper(0, s.length() - 1, s);
-    }
-    
-    List<List<String>> helper(int start, int end, String s) {
-        // Base case: empty substring
-        if(start > end) {
-            List<List<String>> base = new ArrayList<>();
-            base.add(new ArrayList<>());
-            return base;
-        }
         
-        // Check memo
-        if(memo[start][end] != null) {
-            return memo[start][end];
-        }
-        
-        List<List<String>> res = new ArrayList<>();
-        // Try all possible palindrome substrings from start
-        for(int i = start; i <= end; i++) {
-            if(dp[start][i]) {
-                String curr = s.substring(start, i + 1);
-                List<List<String>> subPartitions = helper(i + 1, end, s);
-                for(List<String> sub : subPartitions) {
-                    List<String> partition = new ArrayList<>();
-                    partition.add(curr);
-                    partition.addAll(sub);
-                    res.add(partition);
-                }
-            }
-        }
-        
-        // Store in memo
-        memo[start][end] = res;
-        return res;
+        return partitions.get(n);
     }
 }
+
