@@ -13,11 +13,18 @@ class Solution {
             res.add(new ArrayList<>(combination));
             return ;
         }
-        for(int i=start;i<candiates.length;i++){
-            combination.add(candiates[i]);
-            backtrack(candiates,target-candiates[i],i,combination,res);
-            combination.remove(combination.size()-1);
+        // for(int i=start;i<candiates.length;i++){
+        //     combination.add(candiates[i]);
+        //     backtrack(candiates,target-candiates[i],i,combination,res);
+        //     combination.remove(combination.size()-1);
+        // }
+        if(start<candiates.length){
 
+       combination.add(candiates[start]);
+            backtrack(candiates,target-candiates[start],start,combination,res);
+            combination.remove(combination.size()-1);
+            backtrack(candiates,target,start+1,combination,res);
         }
+     
     }
 }
