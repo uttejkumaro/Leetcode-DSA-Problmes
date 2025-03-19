@@ -1,41 +1,63 @@
-import java.util.HashMap;
-import java.util.Map;
+class TrieNode {
+    TrieNode[] store;
+    boolean flag;
 
-public class Trie {
-    Map<Character, Trie> child = new HashMap<>();
-    boolean isEnd = false;
+    public TrieNode() {
+        store = new TrieNode[26];
+        flag = false;
 
+        for (int index = 0; index < 26; index++) {
+            store[index] = null;
+        }
+    }
+}
+class Trie {
+    TrieNode root;
     public Trie() {
-        // The constructor doesn't need to do anything additional in this implementation.
+        root = new TrieNode();
     }
     
     public void insert(String word) {
-        Trie node = this;
-        for (char c : word.toCharArray()) {
-            node.child.putIfAbsent(c, new Trie());
-            node = node.child.get(c);
+        int n = word.length();
+        TrieNode curr = root;
+
+        for (int index = 0; index < n; index++) {
+            int position = word.charAt(index) - 'a';
+            if (curr.store[position] == null) {
+                curr.store[position] = new TrieNode();
+            }
+            TrieNode nextNodeAddress = curr.store[position];
+            curr = nextNodeAddress;
         }
-        node.isEnd = true;
+        curr.flag = true;
     }
     
     public boolean search(String word) {
-        Trie node = this;
-        for (char c : word.toCharArray()) {
-            node = node.child.get(c);
-            if (node == null) {
+        int n = word.length();
+        TrieNode curr = root;
+
+        for (int index = 0; index < n; index++) {
+            int position = word.charAt(index) - 'a';
+            if (curr.store[position] == null) {
                 return false;
             }
+            TrieNode nextNodeAddress = curr.store[position];
+            curr = nextNodeAddress;
         }
-        return node.isEnd;
+        return curr.flag;
     }
     
     public boolean startsWith(String prefix) {
-        Trie node = this;
-        for (char c : prefix.toCharArray()) {
-            node = node.child.get(c);
-            if (node == null) {
+        int n = prefix.length();
+        TrieNode curr = root;
+
+        for (int index = 0; index < n; index++) {
+            int position = prefix.charAt(index) - 'a';
+            if (curr.store[position] == null) {
                 return false;
             }
+            TrieNode nextNodeAddress = curr.store[position];
+            curr = nextNodeAddress;
         }
         return true;
     }
