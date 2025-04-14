@@ -26,25 +26,70 @@
 //         inOrder(node.right);
 //     }
 // }
+// class Solution {
+//     public List<Integer> inorderTraversal(TreeNode root) {
+//         List<Integer>ans=new ArrayList<>();
+//         Stack<TreeNode>st=new Stack<>();
+//         TreeNode curr=root;
+//         while(true){
+//             if(curr!=null){
+//                 st.push(curr);
+//                 curr=curr.left;
+//             }
+//             else{
+//                 if(st.isEmpty()) break;
+                
+//                      curr=st.pop();
+//                     ans.add(curr.val);
+//                     curr=curr.right;
+                
+//             }
+//         }
+//         return ans;
+//     }
+// }
+class Pair{
+    int state;
+    TreeNode node;
+    Pair(TreeNode node,int state ){
+        this.state=state;
+        this.node=node;
+    }
+}
 class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer>ans=new ArrayList<>();
-        Stack<TreeNode>st=new Stack<>();
-        TreeNode curr=root;
-        while(true){
-            if(curr!=null){
+        List<Integer>pre=new ArrayList<>();
+        List<Integer>post=new ArrayList<>();
+        List<Integer>in=new ArrayList<>();
+        Stack<Pair>st=new Stack<>();
+        if (root == null) return in;
+
+        st.push( new Pair(root,1));
+        while(!st.isEmpty()){
+            Pair curr=st.pop();
+            if(curr.state==1){
+                pre.add(curr.node.val);
+                curr.state++;
                 st.push(curr);
-                curr=curr.left;
+                if(curr.node.left!=null){
+                    st.push(new Pair(curr.node.left,1));
+                }
+            }
+            else if(curr.state==2){
+                in.add(curr.node.val);
+                curr.state++;
+                st.push(curr);
+                if(curr.node.right!=null){
+                    st.push(new Pair(curr.node.right,1));
+                }
+
             }
             else{
-                if(st.isEmpty()) break;
-                
-                     curr=st.pop();
-                    ans.add(curr.val);
-                    curr=curr.right;
-                
+                post.add(curr.node.val);
             }
         }
-        return ans;
+        return in;
+
+    
     }
 }
