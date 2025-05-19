@@ -1,30 +1,20 @@
 class Solution {
     public int longestPalindromeSubseq(String s) {
+        String s2=new StringBuilder(s).reverse().toString();
+        return lcs(s,s2);
+    }
+    int lcs(String s,String s1){
         int n=s.length();
-        int memo[][]=new int [n][n];
-        for(int i=0;i<n;i++){
-            for(int j=0;j<n;j++){
-                memo[i][j]=-1;
+        int m=s1.length();
+        int dp[][]=new int [n+1][m+1];
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=m;j++){
+                if(s.charAt(i-1)==s1.charAt(j-1)){
+                    dp[i][j]=1+dp[i-1][j-1];
+                }
+                else dp[i][j]=Math.max(dp[i][j-1],dp[i-1][j]);
             }
         }
-        return lps(s,0,n-1,memo);
-        
-    }
-    int lps(String s,int i,int j,int memo[][]){
-        if(i>j){
-            return 0;
-        }
-        if(i==j){
-            //1 length case
-            return 1;
-        }
-        if(memo[i][j]!=-1) return memo[i][j];
-        if(s.charAt(i)==s.charAt(j)){
-            memo[i][j]=2+lps(s,i+1,j-1,memo);
-        }
-        else{
-            memo[i][j]=Math.max(lps(s,i+1,j,memo),lps(s,i,j-1,memo));
-        }
-        return memo[i][j];
+        return dp[n][m];
     }
 }
