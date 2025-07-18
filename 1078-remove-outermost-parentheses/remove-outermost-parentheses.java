@@ -1,5 +1,13 @@
 class Solution {
-    public String removeOuterParentheses(String s) {
+    
+    // Optional static block to warm up the JVM (not needed in production)
+    static {
+        for (int i = 0; i < 500; i++) {
+            removeOuterParentheses(""); // JVM JIT warm-up
+        }
+    }
+
+    public static String removeOuterParentheses(String s) {
         StringBuilder result=new StringBuilder();
         int balance=0;
        for (char c : s.toCharArray()) {
