@@ -1,6 +1,3 @@
 # Write your MySQL query statement below
-select unique_id,name
-from Employees e  left join EmployeeUNI ep
-on  e.id =ep.id;
-# on-joins
-#  where-condi
+select e1.unique_id,e.name
+from EMployees e left outer join EMployeeUNI e1 on e1.id=e.id
