@@ -1,12 +1,23 @@
 class Solution {
     public boolean checkValidString(String s) {
-        int low = 0, high = 0;
+        int minOpen = 0, maxOpen = 0;
+
         for (char c : s.toCharArray()) {
-            low += (c == '(') ? 1 : -1;
-            high += (c != ')') ? 1 : -1;
-            if (high < 0) return false;
-            low = Math.max(low, 0);
+            if (c == '(') {
+                minOpen++;
+                maxOpen++;
+            } else if (c == ')') {
+                minOpen--;
+                maxOpen--;
+            } else { // '*'
+                minOpen--;     // treat '*' as ')'
+                maxOpen++;     // treat '*' as '('
+            }
+
+            if (maxOpen < 0) return false; // too many ')'
+            if (minOpen < 0) minOpen = 0;  // can't have negative open count
         }
-        return low == 0;
+
+        return minOpen == 0;
     }
 }
