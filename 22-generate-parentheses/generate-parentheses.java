@@ -20,3 +20,32 @@ class Solution {
         }
     }
 }
+/**
+class Solution {
+    public List<String> generateParenthesis(int n) {
+        List<String> result = new ArrayList<>();
+        StringBuilder sb = new StringBuilder();
+        generate(result, sb, n, 0, 0);
+        return result;
+    }
+
+    private void generate(List<String> result, StringBuilder curr, int n, int open, int close) {
+        if (curr.length() == 2 * n) {
+            result.add(curr.toString());
+            return;
+        }
+
+        if (open < n) {
+            curr.append('(');
+            generate(result, curr, n, open + 1, close);
+            curr.deleteCharAt(curr.length() - 1); // backtrack
+        }
+
+        if (close < open) {
+            curr.append(')');
+            generate(result, curr, n, open, close + 1);
+            curr.deleteCharAt(curr.length() - 1); // backtrack
+        }
+    }
+}
+ */
