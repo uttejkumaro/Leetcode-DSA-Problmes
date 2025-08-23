@@ -35,3 +35,15 @@ class Solution {
         return ans;
     }
 }
+/**
+Why it works (Greedy proof)
+
+We always add as many elements as possible into the current subarray until exceeding mid.
+
+Once exceeded, we cut there and start a new subarray.
+
+This ensures minimum number of subarrays for the given mid.
+
+If this greedy strategy requires more than k subarrays, then no other splitting will succeed with that mid.
+In short:
+This function checks if a given maximum allowed subarray sum (mid) is feasible with at most k splits. */
