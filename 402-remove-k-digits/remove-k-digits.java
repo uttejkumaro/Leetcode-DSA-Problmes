@@ -24,3 +24,15 @@ class Solution {
             return sb.length()==0?"0":sb.toString();            
     }
 }
+/**
+Step-by-step complexity:
+
+Outer loop runs n times. ✅
+
+Inner while loop – looks dangerous, but here’s the catch:
+
+Every pop() reduces either k or removes an element pushed before.
+
+Each element is pushed at most once and popped at most once.
+
+So total number of pop() operations across the entire loop is ≤ n (or ≤ initial k, whichever smaller). */
