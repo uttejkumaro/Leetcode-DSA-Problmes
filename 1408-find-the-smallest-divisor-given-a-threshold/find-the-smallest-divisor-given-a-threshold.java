@@ -13,7 +13,7 @@ class Solution {
             }
             else min=mid+1;
         }
-        return ans;     
+        return min;     
     }
     boolean divide(int mid,int threshold,int[] nums){
         int sum=0;
