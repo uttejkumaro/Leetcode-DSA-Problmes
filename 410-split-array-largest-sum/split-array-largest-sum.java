@@ -1,18 +1,22 @@
 class Solution {
-    boolean canSplit(int mid,int k,int nums[]){
-        int count=1;
-        int currentSum=0;
-        for(int num:nums){
-            if(currentSum+num>mid){
-                count++;
-                currentSum=0;
-            }
-            currentSum+=num;
-            if(count>k) return false;
-           
+   boolean canSplit(int mid, int k, int nums[]) {
+    int count = 1;        // start with one subarray
+    int currentSum = 0;   // sum of the current subarray
+
+    for (int num : nums) {
+        // if adding this num exceeds mid, cut here
+        if (currentSum + num > mid) {
+            count++;          // we need a new subarray
+            currentSum = 0;   // reset sum
         }
-        return true;
+        currentSum += num;    // add current element
+
+        if (count > k) return false; // too many subarrays
     }
+
+    return true; // we managed with <= k subarrays
+}
+
     public int splitArray(int[] nums, int k) {
         int n=nums.length;
         int sum=0,max=0;
