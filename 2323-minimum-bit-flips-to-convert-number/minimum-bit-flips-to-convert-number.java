@@ -6,7 +6,13 @@ class Solution {
         // for(char c:str.toCharArray()){
         //     if(c=='1') count++;
         // }
-        return Integer.bitCount(res);
+       // return Integer.bitCount(res);
+       int count=0;
+       while(res!=0){
+        count++;
+        res&=res-1;
+       }
+       return count;
         
     }
 }
