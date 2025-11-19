@@ -5,7 +5,7 @@ class Solution {
         if(!st.contains(original))return original;
         int num=original;
         while(st.contains(num)){
-            num*=2;
+            num<<=1;
         }
         return num;
     }
