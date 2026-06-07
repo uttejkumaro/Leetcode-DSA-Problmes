@@ -15,42 +15,24 @@
  */
 class Solution {
     public TreeNode createBinaryTree(int[][] descriptions) {
-        Map<Integer, TreeNode> nodeMap = new HashMap<>();
-        Set<Integer> childSet = new HashSet<>();
+        Map<Integer,TreeNode>mp=new HashMap<>();
+        Set<Integer>children=new HashSet<>();
+        for(int []desc:descriptions){
+            int par=desc[0];
+            int child=desc[1];
+            int isLeft = desc[2];
+            mp.putIfAbsent(par,new TreeNode(par));
+            mp.putIfAbsent(child,new TreeNode(child));
+            children.add(child);
+            if(isLeft==1)mp.get(par).left=mp.get(child);
+            else mp.get(par).right=mp.get(child);
 
-        for (int[] des : descriptions) {
-            int parentVal = des[0];
-            int childVal = des[1];
-            boolean isLeft = des[2] == 1;
-
-            // Create parent node if it does not exist
-            if (!nodeMap.containsKey(parentVal)) {
-                nodeMap.put(parentVal, new TreeNode(parentVal));
-            }
-
-            // Create child node if it does not exist
-            if (!nodeMap.containsKey(childVal)) {
-                nodeMap.put(childVal, new TreeNode(childVal));
-            }
-
-            // Add child value to the child set
-            childSet.add(childVal);
-
-            // Assign child to the appropriate side of parent
-            if (isLeft) {
-                nodeMap.get(parentVal).left = nodeMap.get(childVal);
-            } else {
-                nodeMap.get(parentVal).right = nodeMap.get(childVal);
-            }
         }
-
-        // Identify the root node
-        for (int key : nodeMap.keySet()) {
-            if (!childSet.contains(key)) {
-                return nodeMap.get(key);
-            }
+        for(int desc[]:descriptions){
+            int par=desc[0];
+            if(!children.contains(par))return mp.get(par);
         }
+        return null;
 
-        return null; // In case there's no valid tree
     }
 }
