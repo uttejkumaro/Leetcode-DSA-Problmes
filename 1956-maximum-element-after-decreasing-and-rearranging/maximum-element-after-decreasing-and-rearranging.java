@@ -9,15 +9,15 @@ class Solution {
             }
 
         }
-        return max(arr);
+        return arr[arr.length-1];
 
     }
 
-    int max(int[] arr) {
-        int max = 0;
-        for (int i : arr) {
-            max = Math.max(max, i);
-        }
-        return max;
-    }
+    // int max(int[] arr) {
+    //     int max = 0;
+    //     for (int i : arr) {
+    //         max = Math.max(max, i);
+    //     }
+    //     return max;
+    // }
 }
