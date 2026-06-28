@@ -1,23 +1,41 @@
+// class Solution {
+//     public int maximumElementAfterDecrementingAndRearranging(int[] arr) {
+//         int n = arr.length;
+//         Arrays.sort(arr);
+//         if(arr[0]!=1)arr[0]=1;
+//         for (int i = 1; i < n; i++) {
+//             if (Math.abs(arr[i] - arr[i - 1]) > 1) {
+//                 arr[i] = arr[i - 1] + 1;
+//             }
+
+//         }
+//         return arr[arr.length-1];
+
+//     }
+
+//     // int max(int[] arr) {
+//     //     int max = 0;
+//     //     for (int i : arr) {
+//     //         max = Math.max(max, i);
+//     //     }
+//     //     return max;
+//     // }
+// }
 class Solution {
     public int maximumElementAfterDecrementingAndRearranging(int[] arr) {
         int n = arr.length;
-        Arrays.sort(arr);
-        if(arr[0]!=1)arr[0]=1;
-        for (int i = 1; i < n; i++) {
-            if (Math.abs(arr[i] - arr[i - 1]) > 1) {
-                arr[i] = arr[i - 1] + 1;
-            }
+        int[] count = new int[n + 1];
 
+        for (int x : arr) {
+            count[Math.min(x, n)]++;
         }
-        return arr[arr.length-1];
 
+        int ans = 0;
+
+        for (int i = 1; i <= n; i++) {
+            ans = Math.min(ans + count[i], i);
+        }
+
+        return ans;
     }
-
-    // int max(int[] arr) {
-    //     int max = 0;
-    //     for (int i : arr) {
-    //         max = Math.max(max, i);
-    //     }
-    //     return max;
-    // }
 }
